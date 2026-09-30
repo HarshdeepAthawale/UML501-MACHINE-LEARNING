@@ -7,24 +7,41 @@
 - **G** = Girikshit → frontend, design system, visualizations
 - **H+G** = pair / shared
 
-**Timeline:** 12 weeks, starting the week of 2026-10-05. The deadline isn't confirmed yet ([Q-02](OpenQuestions.md#q-02)); if it's earlier, cut P2 items first, then compress Phase 8.
+**Timeline:** 10 phases (0–9) over 12 weeks, starting the week of 2026-10-05. The deadline isn't confirmed yet ([Q-02](OpenQuestions.md#q-02)); if it's earlier, cut P2 items first, then compress Phase 9.
+
+**Detailed step-by-step guides for each phase live in [`phases/`](phases/).** This page is the overview; the phase guides are what you follow while building.
+
+| Phase | Guide | Weeks | Owner | Release |
+|---|---|---|---|---|
+| 0 | [Foundations](phases/Phase-0-Foundations.md) | 1 | H+G | – |
+| 1 | [Backend core](phases/Phase-1-Backend-Core.md) | 2–3 | H | v0.1.0 |
+| 2 | [Agents & orchestration](phases/Phase-2-Agents-Orchestration.md) | 4–5 | H | v0.2.0 |
+| 3 | [Frontend foundation](phases/Phase-3-Frontend-Foundation.md) | 2–3 | G | v0.3.0 |
+| 4 | [War room & results](phases/Phase-4-War-Room-Results.md) | 4–5 | G | v0.4.0 |
+| 5 | [Dashboard & pages](phases/Phase-5-Dashboard-Pages.md) | 6–7 | H+G | v0.5.0 |
+| 6 | [Hardening & deploy](phases/Phase-6-Hardening-Deploy.md) | 8 | H+G | v0.6.0 |
+| 7 | [ML I: data & visual models](phases/Phase-7-ML-Data-Visual-Models.md) | 9–10 | H+G | v0.7.0 |
+| 8 | [ML II: temporal, audio, fusion](phases/Phase-8-ML-Temporal-Audio-Fusion.md) | 11 | H+G | v0.8.0 |
+| 9 | [Evaluation, report & demo](phases/Phase-9-Evaluation-Demo.md) | 12 | H+G | v1.0.0 |
 
 ```mermaid
 gantt
     dateFormat  YYYY-MM-DD
-    axisFormat  W%W
+    axisFormat  %d %b
     section Build
-    P0 Foundations            :p0, 2026-10-05, 5d
-    P1 Backend core           :p1, after p0, 10d
-    P2 Agents + orchestration :p2, after p1, 10d
-    P3 Frontend foundation    :p3, 2026-10-12, 10d
-    P4 War room + results     :p4, after p3, 12d
-    P5 Dashboard & pages      :p5, after p4, 9d
-    P6 Hardening & deploy     :p6, after p5, 7d
+    P0 Foundations               :p0, 2026-10-05, 5d
+    P1 Backend core              :p1, 2026-10-12, 12d
+    P2 Agents + orchestration    :p2, 2026-10-26, 12d
+    P3 Frontend foundation       :p3, 2026-10-12, 12d
+    P4 War room + results        :p4, 2026-10-26, 12d
+    P5 Dashboard & pages         :p5, 2026-11-09, 12d
+    P6 Hardening & deploy        :p6, 2026-11-23, 5d
     section ML
-    Dataset access requests   :milestone, 2026-10-06, 0d
-    P7 ML models              :p7, after p6, 21d
-    P8 Evaluation & demo      :p8, after p7, 7d
+    Dataset access requests      :milestone, 2026-10-06, 0d
+    P7 ML I data + visual        :p7, 2026-11-30, 12d
+    P8 ML II temporal audio fusion :p8, 2026-12-14, 5d
+    section Finish
+    P9 Evaluation & demo         :p9, 2026-12-21, 4d
 ```
 
 Phases 1–2 (backend, **H**) and 3–4 (frontend, **G**) run **in parallel**. They meet at the API contract ([API.md](API.md)), which is frozen at the end of Phase 0 and changed only through PRs that update the doc.
@@ -152,6 +169,7 @@ Phases 1–2 (backend, **H**) and 3–4 (frontend, **G**) run **in parallel**. T
 | P5-08 | Print report page + PDF download button | G |
 | P5-09 | Landing hero 3D point-cloud face + live stats | G |
 | P5-10 | Command palette | G |
+| P5-11 | Demo set loader script (powers "Try a sample" and the offline fallback) | H |
 
 **Exit criteria:** every route in the sitemap is functional; Lighthouse ≥ 90 / Accessibility ≥ 95 on `/dashboard`.
 
@@ -173,36 +191,56 @@ Phases 1–2 (backend, **H**) and 3–4 (frontend, **G**) run **in parallel**. T
 
 ---
 
-## Phase 7 — ML models (Weeks 9–11) · **H+G**
+## Phase 7 — ML I: data pipeline & visual models (Weeks 9–10) · **H+G**
 
-Outline only; it gets a detailed plan (`docs/ML-Plan.md`) at the start of Week 9.
+Full guide: [phases/Phase-7-ML-Data-Visual-Models.md](phases/Phase-7-ML-Data-Visual-Models.md)
 
 | ID | Task |
 |---|---|
-| P7-01 | Data pipeline in `ml/`: FF++ c23 face extraction (RetinaFace, 32 frames/video) or DeepfakeBench/GenD preprocessed copies; fixed splits |
-| P7-02 | Baselines: EfficientNet-B4 and Xception via DeepfakeBench → metrics on FF++ test, Celeb-DF v2, DFDC subset |
-| P7-03 | Main model: GenD (CLIP ViT-L/14, LayerNorm-only + alignment/uniformity loss), fine-tuned on FF++ c23 |
-| P7-04 | Second model: Effort (SVD residual tuning) |
-| P7-05 | Grad-CAM (or attention rollout) for the ViT → real heatmaps |
-| P7-06 | Temporal agent: logistic regression / XGBoost on the classical features built in Phase 2 |
-| P7-07 | Audio: XLS-R + AASIST on ASVspoof 2019 LA; test on In-the-Wild |
-| P7-08 | Stacking fusion + temperature scaling on the validation split; ECE before/after |
-| P7-09 | Export model cards, ROC points, embeddings (UMAP 3D) → seed `model_registry` / `embedding_points` |
-| P7-10 | Real detector classes in `apps/api/app/detectors/`, switch `DETECTOR_*` env vars; mock badge disappears automatically |
+| P7-01 | ML environment (`ml/` uv project), seeds, TensorBoard + `runs.csv` tracking, remote-training notebook |
+| P7-02 | Data pipeline: FF++ c23 / Celeb-DF v2 / DFDC subset face extraction (RetinaFace, 32 frames/video), official splits committed, leakage check |
+| P7-03 | Baselines: EfficientNet-B4 and Xception → metrics on FF++ test, Celeb-DF v2, DFDC subset |
+| P7-04 | Main model: GenD (CLIP ViT-L/14, LayerNorm-only + alignment/uniformity loss), fine-tuned on FF++ c23, 3 seeds |
+| P7-05 | Second model: Effort (SVD residual tuning) |
+| P7-06 | Grad-CAM (or attention rollout) for the ViT → real heatmaps, with sanity checks |
+| P7-07 | Visual detector classes in the API; switch `DETECTOR_VISUAL` |
+| P7-08 | Visual evaluation report (per dataset, per manipulation, ablations, ROC) |
 
-**Exit criteria:** M-1…M-5 from [PRD.md §4.2](PRD.md#42-ml-goals-phase-7-targets--not-promises) measured and reported honestly (met or not); leaderboard shows `OURS` rows.
+**Exit criteria:** in-domain and cross-dataset results reported separately; real Grad-CAM in the war room; `v0.7.0` tagged.
 
 ---
 
-## Phase 8 — Evaluation, report & demo (Week 12) · **H+G**
+## Phase 8 — ML II: temporal, audio, fusion & integration (Week 11) · **H+G**
+
+Full guide: [phases/Phase-8-ML-Temporal-Audio-Fusion.md](phases/Phase-8-ML-Temporal-Audio-Fusion.md)
 
 | ID | Task |
 |---|---|
-| P8-01 | Robustness panel (JPEG / blur / resize drift) — P2 |
-| P8-02 | Live webcam mode — P2 |
-| P8-03 | Final project report (method, math, results tables, ablations, limitations, ethics) |
-| P8-04 | Slide deck + scripted 7-minute demo with fallback plan (pre-computed analyses, rules Judge) |
-| P8-05 | Two full demo rehearsals; tag `v1.0.0` |
+| P8-01 | Temporal classifier (logistic regression / gradient boosting) on the classical features from Phase 2 |
+| P8-02 | Audio: XLS-R + AASIST on ASVspoof 2019 LA; test on In-the-Wild |
+| P8-03 | Stacking fusion on validation scores → `fusion.json` |
+| P8-04 | Temperature scaling; ECE and reliability diagrams before/after |
+| P8-05 | UMAP 3D embeddings → `embedding_points` |
+| P8-06 | Model cards → `model_registry` (`source=ours`) |
+| P8-07 | Integration: all `DETECTOR_*` switched, train/serve skew check, latency measured |
+| P8-08 | Offline robustness evaluation (JPEG / blur / resize) |
+
+**Exit criteria:** M-1…M-5 from [PRD.md §4.2](PRD.md#42-ml-goals-phase-7-targets--not-promises) measured and reported honestly (met or not); no mock detectors left; `v0.8.0` tagged.
+
+---
+
+## Phase 9 — Evaluation, report & demo (Week 12) · **H+G**
+
+Full guide: [phases/Phase-9-Evaluation-Demo.md](phases/Phase-9-Evaluation-Demo.md)
+
+| ID | Task |
+|---|---|
+| P9-01 | Final frozen evaluation run; Tables 1–5 |
+| P9-02 | Final project report (method, math, results tables, ablations, limitations, ethics) |
+| P9-03 | Slide deck + scripted 7-minute demo with fallback plan (pre-computed analyses, rules Judge) |
+| P9-04 | Two full demo rehearsals; tag `v1.0.0` |
+| P9-05 | Robustness panel in the app — P2 stretch |
+| P9-06 | Live webcam mode — P2 stretch |
 
 ---
 
