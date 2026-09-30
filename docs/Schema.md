@@ -284,7 +284,7 @@ Unique: `(analysis_id, seq)`. `judge.token` events are persisted too (so a refre
 | `is_active` | boolean | no | Currently used by an agent |
 | `created_at` | timestamptz | no | |
 
-Seeded by `scripts/seed_models.py` (placeholders + paper baselines); Phase 7 adds `ours` rows from `ml/exports/*/model_card.json`.
+Seeded by `scripts/seed_models.py` (placeholders + paper baselines); Phases 7–8 add `ours` rows from `ml/exports/*/model_card.json` (P8-06).
 
 ### `embedding_points`
 
@@ -299,7 +299,7 @@ Seeded by `scripts/seed_models.py` (placeholders + paper baselines); Phase 7 add
 | `x`, `y`, `z` | real | no | UMAP / t-SNE output |
 | `thumb_path` | varchar(512) | yes | Small face crop for hover (only for datasets whose license allows it) |
 
-Index: `(model_id, dataset)`. Before Phase 7, a synthetic demo set may be seeded **only** with `model_id = mdl_placeholder_demo`, and the UI labels it "synthetic demo data".
+Index: `(model_id, dataset)`. Before Phase 8 (P8-05), a synthetic demo set may be seeded **only** with `model_id = mdl_placeholder_demo`, and the UI labels it "synthetic demo data".
 
 ### `users` (optional, Phase 6)
 
