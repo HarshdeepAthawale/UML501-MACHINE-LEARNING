@@ -18,7 +18,7 @@ Unresolved product and design questions. Each has an owner and a "decide by" poi
 
 - **Status:** open · **Owner:** H · **Decide by:** Week 1
 - **Question:** What are the real dates for the mid-term review, final demo, and report submission? Does the course weight the report, the demo, or the model results most?
-- **Impact:** The 12-week plan in [ImplementationPlan.md](ImplementationPlan.md) assumes the final demo in mid/late December 2026. If it's earlier, cut P2 features and compress Phase 8.
+- **Impact:** The 12-week plan in [ImplementationPlan.md](ImplementationPlan.md) assumes the final demo in mid/late December 2026. If it's earlier, cut P2 features and compress Phase 9.
 
 <a id="q-03"></a>
 ### Q-03 — Does the professor have constraints on tools?
@@ -32,7 +32,7 @@ Unresolved product and design questions. Each has an owner and a "decide by" poi
 
 - **Status:** open · **Owner:** H+G · **Decide by:** end of Phase 0
 - **Question:** Is the proposed split (H = backend + agents, G = frontend) right? Both of us need to be able to explain every part in the viva.
-- **Proposal:** Keep the split for Phases 1–5, pair on Phase 7, and each person reviews all of the other's PRs so knowledge is shared.
+- **Proposal:** Keep the split for Phases 1–5, pair on Phases 7–8, and each person reviews all of the other's PRs so knowledge is shared.
 
 <a id="q-05"></a>
 ### Q-05 — Claude API key and budget for the Judge
@@ -56,7 +56,7 @@ Unresolved product and design questions. Each has an owner and a "decide by" poi
 - **Default if undecided:** shared token only; `users` table stays unused.
 
 <a id="q-08"></a>
-### Q-08 — GPU access for Phase 7
+### Q-08 — GPU access for Phases 7–8
 
 - **Status:** open · **Owner:** H+G · **Decide by:** Week 6
 - **Question:** Do we have a lab GPU? Otherwise Colab (session limits) or Kaggle (~30 GPU h/week)? Is paid cloud GPU an option?
