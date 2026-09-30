@@ -39,7 +39,7 @@ flowchart LR
     VA & TA & AA --> FS
 ```
 
-**Key idea:** every agent calls a **Detector** through an interface. In Phases 1–6 the detectors are *mock* (deterministic, clearly labeled) while all the surrounding signal processing is real: frame extraction, face detection, FFT spectra, optical flow, spectrograms. In Phase 7 we register real models (GenD, Effort, EfficientNet-B4, XLS-R + AASIST) and the app does not change. See [ADR-004](Decisions.md#adr-004).
+**Key idea:** every agent calls a **Detector** through an interface. In Phases 1–6 the detectors are *mock* (deterministic, clearly labeled) while all the surrounding signal processing is real: frame extraction, face detection, FFT spectra, optical flow, spectrograms. In Phases 7–8 we register real models (GenD, Effort, EfficientNet-B4, a temporal classifier, XLS-R + AASIST) and the app does not change. See [ADR-004](Decisions.md#adr-004).
 
 ## 2. Tech stack
 
@@ -84,7 +84,7 @@ flowchart LR
 | Toasts / palette | `sonner`, `cmdk` | |
 | Tests | Vitest + Testing Library; Playwright for E2E | |
 
-### 2.3 ML (Phase 7, outline only)
+### 2.3 ML (Phases 7–8 — see [phases/](phases/))
 
 PyTorch, `timm`, `transformers`, `open_clip`, face detection with RetinaFace (or MediaPipe as a lighter fallback), training in `ml/` with configs under `ml/configs/`. Candidate models from the research note: GenD (CLIP ViT-L/14, LayerNorm tuning), Effort (SVD), EfficientNet-B4 and Xception baselines, XLS-R + AASIST for audio. Exported weights are loaded by detector classes in `apps/api/app/detectors/`.
 
@@ -242,7 +242,7 @@ class AgentResult(BaseModel):
     duration_ms: int
 ```
 
-| Agent | Inputs | Real computation (from Phase 2) | Detector (mock → Phase 7) | Outputs |
+| Agent | Inputs | Real computation (from Phase 2) | Detector (mock → Phases 7–8) | Outputs |
 |---|---|---|---|---|
 | **Visual Forensics** | face crops, full frames | face detection, per-frame crop quality, blur (Laplacian variance) | `mock-visual` → GenD / Effort / ensemble | per-frame P(fake), video score, heatmaps (Grad-CAM in Phase 7; mock saliency before that), top suspicious frames |
 | **Temporal & Frequency** | frame sequence, crops | 2D FFT azimuthal power spectrum + high-frequency energy ratio; frame-to-frame SSIM; Farneback optical-flow magnitude variance in the face region; face bbox jitter | `mock-temporal` → classical-feature classifier (logistic regression / XGBoost on these features) and optionally a video model | temporal inconsistency curve, spectrum images, flicker segments |
@@ -265,7 +265,7 @@ $$
 - **Disagreement** *d* = max |pᵢ − pⱼ| over pairs of scoring agents.
 - **Label:** `fake` if *p* ≥ 0.65, `real` if *p* ≤ 0.35, otherwise `uncertain`. Also `uncertain` if *d* > 0.5 and the overall confidence *c̄* = Σwᵢcᵢ / Σwᵢ < 0.6.
 - **Overall confidence** = *c̄* · (1 − 0.5·*d*).
-- Phase 7 replaces the hand-set weights with a logistic-regression stacker trained on a validation split, and calibrates with temperature scaling (fit *T* to minimize validation NLL, report ECE before/after).
+- Phase 8 replaces the hand-set weights with a logistic-regression stacker trained on a validation split, and calibrates with temperature scaling (fit *T* to minimize validation NLL, report ECE before/after).
 
 **The Judge never changes the number.** Fusion is deterministic and reproducible; the LLM explains it, highlights evidence, and may add a `caveats` list ([ADR-007](Decisions.md#adr-007)).
 
@@ -343,7 +343,7 @@ Latest Chrome, Edge, Firefox, Safari. Mobile Safari/Chrome for viewing results (
 
 Phase 7 targets are set once models are chosen; GPU inference for GenD on 32 face crops should take under 2 s.
 
-## 7. Phase 7 hook points (so ML slots in cleanly)
+## 7. ML hook points, Phases 7–8 (so ML slots in cleanly)
 
 | Hook | File | Contract |
 |---|---|---|
