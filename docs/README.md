@@ -9,6 +9,25 @@
 **Backend API + 4 AI agents (on mock detectors) → Frontend dashboard → Hardening → swap in real ML models → Evaluation & demo.**
 The ML models plug into a detector interface that exists from day one, so nothing in the app changes when the real models arrive. See [ImplementationPlan.md](ImplementationPlan.md).
 
+## Phase guides
+
+Step-by-step playbooks — tasks, files to create, acceptance checks, tests, end-of-phase demo, and handoff. Follow these while building.
+
+| Phase | Guide | Weeks | Owner |
+|---|---|---|---|
+| 0 | [Foundations](phases/Phase-0-Foundations.md) | 1 | H+G |
+| 1 | [Backend core](phases/Phase-1-Backend-Core.md) | 2–3 | H |
+| 2 | [Agents & orchestration](phases/Phase-2-Agents-Orchestration.md) | 4–5 | H |
+| 3 | [Frontend foundation](phases/Phase-3-Frontend-Foundation.md) | 2–3 | G |
+| 4 | [War room & results](phases/Phase-4-War-Room-Results.md) | 4–5 | G |
+| 5 | [Dashboard & pages](phases/Phase-5-Dashboard-Pages.md) | 6–7 | H+G |
+| 6 | [Hardening & deploy](phases/Phase-6-Hardening-Deploy.md) | 8 | H+G |
+| 7 | [ML I: data & visual models](phases/Phase-7-ML-Data-Visual-Models.md) | 9–10 | H+G |
+| 8 | [ML II: temporal, audio, fusion](phases/Phase-8-ML-Temporal-Audio-Fusion.md) | 11 | H+G |
+| 9 | [Evaluation, report & demo](phases/Phase-9-Evaluation-Demo.md) | 12 | H+G |
+
+H = Harshdeep, G = Girikshit. Phases 1–2 and 3–4 run in parallel.
+
 ## Read in this order
 
 | # | Doc | What it answers | Read before |
