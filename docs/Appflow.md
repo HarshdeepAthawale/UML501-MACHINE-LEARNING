@@ -29,12 +29,12 @@ flowchart TD
 | `/analyses/[id]` | Live war room while running; results when done | 4 | P0 |
 | `/analyses/[id]/report` | Print-friendly report (also the source for PDF styling) | 5 | P1 |
 | `/history` | Searchable, filterable table of analyses | 5 | P0 |
-| `/models` | Leaderboard: ours vs baselines, per-dataset metrics, ROC | 5 / 7 | P1 |
-| `/models/[id]` | Model card: architecture, training setup, metrics, confusion matrix | 7 | P1 |
-| `/explore` | 3D embedding explorer (real vs fake clusters) | 5 / 7 | P2 |
+| `/models` | Leaderboard: ours vs baselines, per-dataset metrics, ROC | 5 / 7–8 | P1 |
+| `/models/[id]` | Model card: architecture, training setup, metrics, confusion matrix | 5 / 7–8 | P1 |
+| `/explore` | 3D embedding explorer (real vs fake clusters) | 5 / 8 | P2 |
 | `/about` | Pipeline diagram, agent explanations, the math, datasets, limits | 5 | P1 |
 | `/settings` | API status, limits, Judge on/off, theme, retention, purge data | 5 | P1 |
-| `/live` | Webcam real-time visual score | 8 | P2 |
+| `/live` | Webcam real-time visual score | 9 | P2 |
 
 Global shell: collapsible left sidebar (Dashboard, Analyze, History, Models, Explore, About, Settings), top bar with a command palette trigger (Ctrl/⌘+K), API status dot, theme toggle. The landing page uses a full-bleed layout without the sidebar.
 
@@ -157,7 +157,7 @@ Leaderboard table grouped by agent. Columns: model, source badge (`OURS` / `PAPE
 
 ### 5.4 Explorer (`/explore`)
 
-Pick a model and dataset → 3D point cloud (orbit, zoom), coloured by real/fake, shape or shade by manipulation type. Hover → tooltip (and a thumbnail where the license allows). Toggle 2D/3D. Before Phase 7 it shows the synthetic demo set with a clear "synthetic demo data" banner.
+Pick a model and dataset → 3D point cloud (orbit, zoom), coloured by real/fake, shape or shade by manipulation type. Hover → tooltip (and a thumbnail where the license allows). Toggle 2D/3D. Before Phase 8 it shows the synthetic demo set with a clear "synthetic demo data" banner.
 
 ### 5.5 About (`/about`)
 
