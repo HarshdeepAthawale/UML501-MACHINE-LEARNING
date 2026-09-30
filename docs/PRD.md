@@ -70,13 +70,13 @@ Priority: **P0** = required for the demo, **P1** = strongly wanted, **P2** = str
 | F-10 | PDF report export | P1 | 5 |
 | F-11 | History: list, search, filter, delete analyses | P0 | 5 |
 | F-12 | Overview dashboard: KPIs, verdict distribution, recent activity, agent health | P0 | 5 |
-| F-13 | Model leaderboard: our models vs baselines, ROC curves, per-dataset metrics | P1 | 5 (shell), 7 (real data) |
-| F-14 | 3D embedding explorer (real vs fake clusters) | P2 | 5 (shell), 7 (real data) |
+| F-13 | Model leaderboard: our models vs baselines, ROC curves, per-dataset metrics | P1 | 5 (shell), 7–8 (real data) |
+| F-14 | 3D embedding explorer (real vs fake clusters) | P2 | 5 (shell), 8 (real data) |
 | F-15 | "How it works" page: pipeline diagram + the math, for the viva | P1 | 5 |
 | F-16 | Command palette (Ctrl/⌘+K) | P2 | 5 |
-| F-17 | Live webcam mode | P2 | 8 |
+| F-17 | Live webcam mode | P2 | 9 |
 | F-18 | Metadata / provenance check (EXIF, C2PA presence) | P1 | 2 |
-| F-19 | Robustness panel (re-run under JPEG / blur / resize, show score drift) | P2 | 7 |
+| F-19 | Robustness panel (re-run under JPEG / blur / resize, show score drift) | P2 | 9 |
 
 ## 6. User stories (P0)
 
@@ -91,7 +91,7 @@ Priority: **P0** = required for the demo, **P1** = strongly wanted, **P2** = str
 
 ## 7. Scope by phase
 
-See [ImplementationPlan.md](ImplementationPlan.md). Summary:
+See [ImplementationPlan.md](ImplementationPlan.md) and the step-by-step guides in [phases/](phases/). Summary:
 
 | Phase | Outcome |
 |---|---|
@@ -102,8 +102,9 @@ See [ImplementationPlan.md](ImplementationPlan.md). Summary:
 | 4 | War room + results visualizations |
 | 5 | Dashboard, history, leaderboard shell, about page, PDF |
 | 6 | Hardening: tests, security, performance, Docker, deploy |
-| 7 | ML: train/fine-tune real detectors and swap out mocks |
-| 8 | Evaluation, report, demo rehearsal, stretch features |
+| 7 | ML I: data pipeline, baselines, GenD + Effort visual models, Grad-CAM |
+| 8 | ML II: temporal classifier, audio model, learned fusion + calibration; no mocks left |
+| 9 | Evaluation, report, demo rehearsal, stretch features |
 
 ## 8. Assumptions
 
