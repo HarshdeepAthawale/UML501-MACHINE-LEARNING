@@ -27,7 +27,7 @@ How the two of us (and any AI assistant we use) get changes into `main`. Enginee
 | `test/` | Tests only |
 | `chore/` | Tooling, deps, config, CI |
 | `perf/` | Performance improvements |
-| `ml/` | Training, evaluation, data scripts (Phase 7) |
+| `ml/` | Training, evaluation, data scripts (Phases 7–8) |
 
 Examples: `feat/P1-04-media-upload`, `feat/P4-02-war-room-layout`, `fix/sse-replay-duplicates`, `docs/api-frames-endpoint`.
 
@@ -105,7 +105,7 @@ A task is done when: merged to `main`, CI green, tests cover the new logic, docs
 
 ## 8. Labels
 
-`phase:0` … `phase:8`, `area:api`, `area:web`, `area:agents`, `area:ml`, `area:docs`, `type:bug`, `type:feature`, `priority:P0/P1/P2`, `blocked`, `run-e2e`.
+`phase:0` … `phase:9`, `area:api`, `area:web`, `area:agents`, `area:ml`, `area:docs`, `type:bug`, `type:feature`, `priority:P0/P1/P2`, `blocked`, `run-e2e`.
 
 ## 9. Repository settings (set up in P0-05)
 
