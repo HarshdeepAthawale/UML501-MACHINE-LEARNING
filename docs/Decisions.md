@@ -22,7 +22,7 @@ Consequences — what this makes easier / harder
 
 **Context:** We want a polished dashboard and 4 agents, and 96–97% accuracy. Training depends on dataset approvals and GPU time we don't control yet.
 
-**Decision:** Build the complete product (backend, agents, UI) against a `Detector` interface with deterministic mock implementations and real signal processing. Swap in trained models in Phase 7.
+**Decision:** Build the complete product (backend, agents, UI) against a `Detector` interface with deterministic mock implementations and real signal processing. Swap in trained models in Phases 7–8.
 
 **Alternatives:** (a) ML first, UI last — risks an ugly rushed UI and blocks one teammate. (b) Build both at once — splits focus and makes integration late and painful.
 
@@ -149,7 +149,7 @@ Consequences — what this makes easier / harder
 
 **Decision:** Even before trained models exist, the Temporal & Frequency agent computes real FFT spectra, SSIM flicker, optical flow and bbox jitter; the Audio agent computes real spectrograms and energy features. Only the final *scores* are mocked.
 
-**Consequences:** The visualizations show genuine measurements of the uploaded file; these features become the inputs of the classical temporal classifier in Phase 7 (a good ML-course ablation: hand-crafted features vs. foundation-model features).
+**Consequences:** The visualizations show genuine measurements of the uploaded file; these features become the inputs of the classical temporal classifier in Phase 8 (a good ML-course ablation: hand-crafted features vs. foundation-model features).
 
 <a id="adr-013"></a>
 ## ADR-013 — Main visual model candidate: GenD, with Effort as the second model
