@@ -368,7 +368,7 @@ file=@interview_clip.mp4
 }
 ```
 
-`source` ∈ `ours | paper | placeholder`. `paper` rows must include a citation in `notes`; `placeholder` rows exist only before Phase 7 and are rendered greyed out as "pending training". Numbers above are illustrative.
+`source` ∈ `ours | paper | placeholder`. `paper` rows must include a citation in `notes`; `placeholder` rows exist only until Phases 7–8 replace them and are rendered greyed out as "pending training". Numbers above are illustrative.
 
 ### Metrics (dashboard)
 
@@ -395,7 +395,7 @@ file=@interview_clip.mp4
 | GET | `/settings/public` | Non-secret runtime info for the Settings page: limits, judge enabled/model, retention days, `app_env` |
 | POST | `/admin/purge` | Delete all media and analyses. Requires `{"confirm": "DELETE ALL"}`. Disabled unless `APP_ENV=development` or a token is set. |
 
-### Live mode (Phase 8, stretch)
+### Live mode (Phase 9, stretch)
 
 | Method | Path | Description |
 |---|---|---|
