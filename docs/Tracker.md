@@ -16,10 +16,13 @@ Update the row in the same PR that finishes the task (put the PR number in Notes
 | P2 Agents & orchestration | 13 | 0 | not started |
 | P3 Frontend foundation | 7 | 0 | not started |
 | P4 War room & results | 11 | 0 | not started |
-| P5 Dashboard & pages | 10 | 0 | not started |
+| P5 Dashboard & pages | 11 | 0 | not started |
 | P6 Hardening & deploy | 7 | 0 | not started |
-| P7 ML models | 10 | 0 | not started |
-| P8 Evaluation & demo | 5 | 0 | not started |
+| P7 ML I: data & visual models | 8 | 0 | not started |
+| P8 ML II: temporal, audio, fusion | 8 | 0 | not started |
+| P9 Evaluation & demo | 6 | 0 | not started |
+
+Phase guides: [`phases/`](phases/)
 
 ## External dependencies
 
@@ -122,6 +125,7 @@ Update the row in the same PR that finishes the task (put the PR number in Notes
 | P5-08 | Print report + PDF button | G | todo | |
 | P5-09 | Landing 3D hero + stats | G | todo | |
 | P5-10 | Command palette | G | todo | |
+| P5-11 | Demo set loader | H | todo | |
 
 ## Phase 6 — Hardening & deploy
 
@@ -135,27 +139,39 @@ Update the row in the same PR that finishes the task (put the PR number in Notes
 | P6-06 | Pre-computed demo analyses | H+G | todo | |
 | P6-07 | Tag v0.6.0 | H+G | todo | |
 
-## Phase 7 — ML models
+## Phase 7 — ML I: data & visual models
 
 | ID | Task | Owner | Status | Notes |
 |---|---|---|---|---|
-| P7-01 | Data pipeline + splits | H+G | todo | |
-| P7-02 | Baselines | H+G | todo | |
-| P7-03 | GenD fine-tune | H+G | todo | |
-| P7-04 | Effort | H+G | todo | |
-| P7-05 | Grad-CAM | H+G | todo | |
-| P7-06 | Temporal classical classifier | H+G | todo | |
-| P7-07 | Audio model | H+G | todo | |
-| P7-08 | Stacking + calibration | H+G | todo | |
-| P7-09 | Exports → registry/embeddings | H+G | todo | |
-| P7-10 | Real detectors wired in | H+G | todo | |
+| P7-01 | ML environment + tracking | H+G | todo | |
+| P7-02 | Data pipeline + splits | H+G | todo | |
+| P7-03 | Baselines (EfficientNet-B4, Xception) | H+G | todo | |
+| P7-04 | GenD fine-tune (3 seeds) | H+G | todo | |
+| P7-05 | Effort | H+G | todo | |
+| P7-06 | Grad-CAM + sanity checks | H+G | todo | |
+| P7-07 | Visual detectors in API | H+G | todo | |
+| P7-08 | Visual evaluation report | H+G | todo | |
 
-## Phase 8 — Evaluation & demo
+## Phase 8 — ML II: temporal, audio, fusion & integration
 
 | ID | Task | Owner | Status | Notes |
 |---|---|---|---|---|
-| P8-01 | Robustness panel | H+G | todo | P2 |
-| P8-02 | Live webcam mode | H+G | todo | P2 |
-| P8-03 | Final report | H+G | todo | |
-| P8-04 | Slides + demo script | H+G | todo | |
-| P8-05 | Rehearsals + v1.0.0 | H+G | todo | |
+| P8-01 | Temporal classical classifier | H+G | todo | |
+| P8-02 | Audio model (XLS-R + AASIST) | H+G | todo | |
+| P8-03 | Stacking fusion | H+G | todo | |
+| P8-04 | Temperature scaling + ECE | H+G | todo | |
+| P8-05 | UMAP embeddings → explorer | H+G | todo | |
+| P8-06 | Model cards → registry | H+G | todo | |
+| P8-07 | Integration + skew check + latency | H+G | todo | |
+| P8-08 | Offline robustness evaluation | H+G | todo | |
+
+## Phase 9 — Evaluation, report & demo
+
+| ID | Task | Owner | Status | Notes |
+|---|---|---|---|---|
+| P9-01 | Final frozen evaluation | H+G | todo | |
+| P9-02 | Final report | H+G | todo | |
+| P9-03 | Slides + demo script | H+G | todo | |
+| P9-04 | Rehearsals + v1.0.0 | H+G | todo | |
+| P9-05 | Robustness panel in app | H+G | todo | P2 stretch |
+| P9-06 | Live webcam mode | H+G | todo | P2 stretch |
